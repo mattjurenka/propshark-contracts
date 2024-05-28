@@ -1,4 +1,0 @@
-[submodule "propshark-contracts/suitears"]
-	path = propshark-contracts/suitears
-	url = https://github.com/interest-protocol/suitears
-	branch = testnet
