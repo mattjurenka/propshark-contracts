@@ -43,7 +43,6 @@ module propshark_contracts::propshark_contracts {
             treasury: cap
         };
         transfer::share_object(holder);
-
     }
 
     public struct AccountBalance<phantom DaoWitness: drop> has store {
