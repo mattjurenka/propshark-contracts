@@ -1,0 +1,14 @@
+{
+    "types": {
+        "house_type": "0x974acc9551d8283e23d3fcf898d2f0f86f0c72fbb41fd33114c80fa16ca50337::house_one::HOUSE_ONE",
+        "dao_type": "0xfe96bb1a6fc447e83e5c9d741bf8565f619d099bff6e540bcc95d487c4f47683::dao::Dao<0x974acc9551d8283e23d3fcf898d2f0f86f0c72fbb41fd33114c80fa16ca50337::house_one::HOUSE_ONE>",
+        "dao_treasury_type": "0xfe96bb1a6fc447e83e5c9d741bf8565f619d099bff6e540bcc95d487c4f47683::dao_treasury::DaoTreasury<0x974acc9551d8283e23d3fcf898d2f0f86f0c72fbb41fd33114c80fa16ca50337::house_one::HOUSE_ONE>",
+        "fundraise_type": "0xee6efc1e2aea7daeebd0586188b41e0f6509abe9da770b9f99a7d6cdb0224e59::propshark_contracts::Fundraise<0xee6efc1e2aea7daeebd0586188b41e0f6509abe9da770b9f99a7d6cdb0224e59::mock_usdc::MOCK_USDC, 0x974acc9551d8283e23d3fcf898d2f0f86f0c72fbb41fd33114c80fa16ca50337::house_one::HOUSE_ONE>",
+        "property_manager_cap_type": "0xee6efc1e2aea7daeebd0586188b41e0f6509abe9da770b9f99a7d6cdb0224e59::propshark_contracts::PropertyManagerCap"
+    },
+    "house_one_package_id": "0x974acc9551d8283e23d3fcf898d2f0f86f0c72fbb41fd33114c80fa16ca50337",
+    "dao_id": "0xd04db159ba70c7cb0cba05d0669cd8e31cc6b99c10ef02419a5e64a010399472",
+    "dao_treasury_id": "0xa5d0d345458669244858b766bfa18544f3d5f5622cfa7bba8977c030f41f3368",
+    "fundraise_id": "0xad97f32b3c488729889a8ec7b4bb75caeede9292673eb8ba6b29ecd0a1b461b1",
+    "fundraise_manager_cap": "0x65a53f712f6b01fc4df05d7a14193145447651bdc62ad5025d2f7f92ea16b62f"
+}
