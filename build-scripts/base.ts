@@ -15,11 +15,12 @@ export const deploy_directory = async (directory: string): Promise<SuiObjectChan
     const { schema, secretKey } = decodeSuiPrivateKey(mnemonic);
     const keypair = Ed25519Keypair.fromSecretKey(secretKey);
 
-    const contracts_directory = import.meta.dir + directory
+    const contracts_directory = import.meta.dir + "/../" + directory
 
     const deploy_proc = Bun.spawn(["sui", "move", "build", "--silence-warnings", "--dump-bytecode-as-base64", "--path", contracts_directory]);
 
     const output = await new Response(deploy_proc.stdout).text();
+    console.log(output)
     const { modules, dependencies } = JSON.parse(output)
 
     const deploy_trx = new TransactionBlock()
@@ -32,4 +33,8 @@ export const deploy_directory = async (directory: string): Promise<SuiObjectChan
     })
     
     return objectChanges
+}
+
+export const write_json = async (contents: any, filename: string) => {
+    Bun.write(import.meta.dir + "/../deployed-addresses/" + filename + ".json", JSON.stringify(contents, undefined, 4))
 }

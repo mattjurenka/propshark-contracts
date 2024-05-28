@@ -1,0 +1,4 @@
+[submodule "suitears"]
+	path = suitears
+	url = https://github.com/interest-protocol/suitears
+	branch = testnet
