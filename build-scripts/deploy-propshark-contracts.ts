@@ -1,5 +1,13 @@
 import { TransactionBlock } from "@mysten/sui.js/transactions";
 import { deploy_directory, find_created_object, find_published_package_id, get_client, write_json } from "./base";
+import * as TOML from "@iarna/toml"
+
+const propshark_move_file = await Bun.file("../propshark-contracts/Move.toml").text()
+const parsed_toml = TOML.parse(propshark_move_file)
+delete (parsed_toml as any)["package"]["published-at"];
+(parsed_toml["addresses"] as any)["propshark_contracts"] = "0x0"
+
+await Bun.write("../propshark-contracts/Move.toml", TOML.stringify(parsed_toml))
 
 const changes = await deploy_directory("propshark-contracts")
 
@@ -44,5 +52,9 @@ const treasury_holder_id = find_created_object(objectChanges, treasury_holder_ty
 addresses.types.treasury_holder_type = treasury_holder_type
 addresses.treasury_holder_id = treasury_holder_id
 console.log(objectChanges)
+
+;(parsed_toml as any)["package"]["published-at"] = package_id;
+(parsed_toml["addresses"] as any)["propshark_contracts"] = package_id
+await Bun.write("../propshark-contracts/Move.toml", TOML.stringify(parsed_toml))
 
 write_json(addresses, "propshark")

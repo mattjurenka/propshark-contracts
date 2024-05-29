@@ -8,10 +8,21 @@ import USDCBalance from "@/components/usdc_balance";
 import { Progress } from "@/components/ui/progress";
 import LoginButton from "@/components/connect_button";
 import RaiseCard from "@/components/raise";
+import house_data from "../../../deployed-addresses/houses.json"
+import propshark_addresses from "../../../deployed-addresses/propshark.json"
+import { TransactionBlock } from "@mysten/sui.js/transactions";
+
+const txb = new TransactionBlock()
+txb.moveCall({
+  target: []
+})
 
 
 export default function Home() {
   const current_account = useCurrentAccount()
+  const x = useSuiClientQuery("devInspectTransactionBlock", {
+
+  })
 
   return (
     <main>
@@ -37,8 +48,10 @@ export default function Home() {
           <h3 className="mt-8 scroll-m-20 text-2xl font-semibold tracking-tight">
             Open Raises
           </h3>
-          <RaiseCard img="housetwo.jpg" address="701 Jeffry Cliff, Port Armandinaland, MO 25172" annual_yield={51680} cap_rate={0.0544} raise_target={950000} sqft={2016} total_raised={731040} user_contribution={0} />
-          <RaiseCard img="houseone.webp" address="440 Rockville Street, Hephzibah, GA 30815" annual_yield={30350} cap_rate={0.0607} raise_target={500000} sqft={4000} total_raised={258000} user_contribution={0} />
+          {Object.keys(house_data).map((house_name) => {
+            const {cap_rate, raise_target, sqft, type, img, address} = (house_data as any)[house_name].metadata
+            return <RaiseCard address={address} annual_yield={raise_target * cap_rate / 100 * 0.92} cap_rate={cap_rate} raise_target={raise_target} sqft={sqft} type={type} img={img} total_raised={0} user_contribution={0} />
+          })}
         </div>
       </div>
     </main>

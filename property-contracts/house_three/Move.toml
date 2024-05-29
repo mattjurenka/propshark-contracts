@@ -2,24 +2,21 @@ dev-dependencies = { }
 dev-addresses = { }
 
 [package]
-name = "PropsharkContracts"
+name = "house_three"
 edition = "2024.beta"
-published-at = "0xd39658a6f0dcace52d1a5de848d957e3a09d51a37d8b9f90c55ac284133330ba"
 
 [dependencies.Sui]
 git = "https://github.com/MystenLabs/sui.git"
 subdir = "crates/sui-framework/packages/sui-framework"
 rev = "framework/testnet"
 
-[dependencies.DeepBook]
-git = "https://github.com/MystenLabs/sui.git"
-subdir = "crates/sui-framework/packages/deepbook"
-rev = "framework/testnet"
+[dependencies.PropsharkContracts]
+local = "../../propshark-contracts"
 
 [dependencies.SuiTears]
-local = "../suitears/contracts"
+local = "../../suitears/contracts"
 
 [addresses]
+house_three = "0x0"
 propshark_contracts = "0xd39658a6f0dcace52d1a5de848d957e3a09d51a37d8b9f90c55ac284133330ba"
-deepbook = "0xdee9"
 suitears = "0xfe96bb1a6fc447e83e5c9d741bf8565f619d099bff6e540bcc95d487c4f47683"

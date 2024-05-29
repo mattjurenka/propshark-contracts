@@ -2,10 +2,10 @@
 
 [move]
 version = 2
-manifest_digest = "22726DE2F51298F5DA7A8619529DA415EC524190A0314A37CD8BB0B1DE6A6329"
+manifest_digest = "7880C1E3C81999AEF41DC8C1863D4B9C84857CA6F51C3662FE48EC98409E1730"
 deps_digest = "060AD7E57DFB13104F21BE5F5C3759D03F0553FC3229247D9A7A6B45F50D03A3"
 dependencies = [
-  { name = "DeepBook" },
+  { name = "PropsharkContracts" },
   { name = "Sui" },
   { name = "SuiTears" },
 ]
@@ -24,6 +24,16 @@ name = "MoveStdlib"
 source = { git = "https://github.com/MystenLabs/sui.git", rev = "framework/testnet", subdir = "crates/sui-framework/packages/move-stdlib" }
 
 [[move.package]]
+name = "PropsharkContracts"
+source = { local = "../../propshark-contracts" }
+
+dependencies = [
+  { name = "DeepBook" },
+  { name = "Sui" },
+  { name = "SuiTears" },
+]
+
+[[move.package]]
 name = "Sui"
 source = { git = "https://github.com/MystenLabs/sui.git", rev = "framework/testnet", subdir = "crates/sui-framework/packages/sui-framework" }
 
@@ -33,7 +43,7 @@ dependencies = [
 
 [[move.package]]
 name = "SuiTears"
-source = { local = "../suitears/contracts" }
+source = { local = "../../suitears/contracts" }
 
 dependencies = [
   { name = "MoveStdlib" },

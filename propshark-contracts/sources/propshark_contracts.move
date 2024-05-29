@@ -125,6 +125,10 @@ module propshark_contracts::propshark_contracts {
         fundraise.collected.join(coin.into_balance());
     }
 
+    public fun get_fundraise_values() {
+
+    }
+
     fun get_ownership_map_from_fundraise_amounts<CoinType, DaoWitness: drop>(
         orderbook: &mut Pool<PROPSHARK_ACCOUNTING_TOKEN, CoinType>,
         collected_amount: u64,

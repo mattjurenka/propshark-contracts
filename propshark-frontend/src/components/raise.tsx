@@ -14,9 +14,10 @@ export interface RaiseProps {
     sqft: number,
     address: string
     img: string
+    type: string
 }
 
-export default function RaiseCard({ img, raise_target, total_raised, user_contribution, annual_yield, cap_rate, sqft, address }: RaiseProps) {
+export default function RaiseCard({ img, raise_target, total_raised, user_contribution, annual_yield, cap_rate, sqft, address, type }: RaiseProps) {
     const current_account = useCurrentAccount()
     return <div className="rounded-xl bg-gray-200">
         <img src={img} className="rounded-t-xl object-cover max-h-48 w-full"></img>
@@ -29,12 +30,12 @@ export default function RaiseCard({ img, raise_target, total_raised, user_contri
                 <p className="leading-tight">Annual Yield</p>
             </div>
             <div>
-                <p className="font-bold">{(cap_rate * 100).toFixed(2)}%</p>
+                <p className="font-bold">{cap_rate.toFixed(2)}%</p>
                 <p className="leading-tight">Cap Rate</p>
             </div>
             <div>
                 <p className="font-bold">{sqft.toLocaleString()} sqft</p>
-                <p className="leading-tight">Multifamily</p>
+                <p className="leading-tight">{type}</p>
             </div>
             </div>
             <p className="mt-2 text-sm">{address}</p>
