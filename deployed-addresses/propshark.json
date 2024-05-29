@@ -1,13 +1,13 @@
 {
     "types": {
-        "accounting_token_tcap_type": "0x2::coin::TreasuryCap<0xd39658a6f0dcace52d1a5de848d957e3a09d51a37d8b9f90c55ac284133330ba::propshark_accounting_token::PROPSHARK_ACCOUNTING_TOKEN>",
-        "accounting_token_type": "0xd39658a6f0dcace52d1a5de848d957e3a09d51a37d8b9f90c55ac284133330ba::propshark_accounting_token::PROPSHARK_ACCOUNTING_TOKEN",
-        "mock_usdc_tcap_type": "0x2::coin::TreasuryCap<0xd39658a6f0dcace52d1a5de848d957e3a09d51a37d8b9f90c55ac284133330ba::mock_usdc::MOCK_USDC>",
-        "mock_usdc_type": "0xd39658a6f0dcace52d1a5de848d957e3a09d51a37d8b9f90c55ac284133330ba::mock_usdc::MOCK_USDC",
-        "treasury_holder_type": "0xd39658a6f0dcace52d1a5de848d957e3a09d51a37d8b9f90c55ac284133330ba::propshark_contracts::AccountingTokenTreasuryHolder"
+        "accounting_token_tcap_type": "0x2::coin::TreasuryCap<0xea29c5548d3d8b8de743aa8166a78ed473ae7a2e348882129a7656869a2c7ef8::propshark_accounting_token::PROPSHARK_ACCOUNTING_TOKEN>",
+        "accounting_token_type": "0xea29c5548d3d8b8de743aa8166a78ed473ae7a2e348882129a7656869a2c7ef8::propshark_accounting_token::PROPSHARK_ACCOUNTING_TOKEN",
+        "mock_usdc_tcap_type": "0x2::coin::TreasuryCap<0xea29c5548d3d8b8de743aa8166a78ed473ae7a2e348882129a7656869a2c7ef8::mock_usdc::MOCK_USDC>",
+        "mock_usdc_type": "0xea29c5548d3d8b8de743aa8166a78ed473ae7a2e348882129a7656869a2c7ef8::mock_usdc::MOCK_USDC",
+        "treasury_holder_type": "0xea29c5548d3d8b8de743aa8166a78ed473ae7a2e348882129a7656869a2c7ef8::propshark_contracts::AccountingTokenTreasuryHolder"
     },
-    "propshark_package_id": "0xd39658a6f0dcace52d1a5de848d957e3a09d51a37d8b9f90c55ac284133330ba",
-    "mock_usdc_tcap_id": "0x4a83fe50b54707de3031862eddce9d0da6002cdf13fd35d74145edbbd8dae8f6",
-    "accounting_token_tcap_id": "0x51bf63bbe4dbe42260a003dad621483059fb6e4aee3e19d2cfca76c66815d36e",
-    "treasury_holder_id": "0x8a324a963ece2fa30c2a65d7f815bd3cfc84c8f1653e8de425ed3e079696d2a2"
+    "propshark_package_id": "0xea29c5548d3d8b8de743aa8166a78ed473ae7a2e348882129a7656869a2c7ef8",
+    "mock_usdc_tcap_id": "0x055471375e5cade95364ea85faf74929e7e7b02b7c08a29f79d25bbb3666dac9",
+    "accounting_token_tcap_id": "0xe90f93d9f2876c358a83b492c5c954747705bbee56bc2327359ba726cd1e3260",
+    "treasury_holder_id": "0x0a081adc05a67f2c62c9c1823906d4ddcbfbf5d0926c669269379a06e024d7ea"
 }

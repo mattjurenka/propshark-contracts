@@ -18,5 +18,5 @@ local = "../../suitears/contracts"
 
 [addresses]
 house_one = "0x0"
-propshark_contracts = "0xd39658a6f0dcace52d1a5de848d957e3a09d51a37d8b9f90c55ac284133330ba"
+propshark_contracts = "0xea29c5548d3d8b8de743aa8166a78ed473ae7a2e348882129a7656869a2c7ef8"
 suitears = "0xfe96bb1a6fc447e83e5c9d741bf8565f619d099bff6e540bcc95d487c4f47683"

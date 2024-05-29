@@ -4,6 +4,7 @@ import { Button } from "./ui/button";
 import LoginButton from "./connect_button";
 import { useCurrentAccount } from "@mysten/dapp-kit";
 import { money_format } from "@/lib/utils";
+import ApproveKycDialog from "./ApproveKycDialog";
 
 export interface RaiseProps {
     raise_target: number,
@@ -15,9 +16,11 @@ export interface RaiseProps {
     address: string
     img: string
     type: string
+    needs_kyc: boolean
+    house_name: string
 }
 
-export default function RaiseCard({ img, raise_target, total_raised, user_contribution, annual_yield, cap_rate, sqft, address, type }: RaiseProps) {
+export default function RaiseCard({ img, raise_target, total_raised, user_contribution, annual_yield, cap_rate, sqft, address, type, needs_kyc, house_name }: RaiseProps) {
     const current_account = useCurrentAccount()
     return <div className="rounded-xl bg-gray-200">
         <img src={img} className="rounded-t-xl object-cover max-h-48 w-full"></img>
@@ -71,7 +74,7 @@ export default function RaiseCard({ img, raise_target, total_raised, user_contri
                     </tbody>
                 </table>
                 <div className="flex gap-4 mt-2">
-                    <Button className="">Participate</Button>
+                    {needs_kyc ? <ApproveKycDialog address={current_account.address || ""} house_name={house_name} /> : <Button>Invest</Button>}
                     <Button onClick={() => window.open("/propsharkincorporation.pdf", "_blank")}>View Documents</Button>
                 </div>
             </div> :

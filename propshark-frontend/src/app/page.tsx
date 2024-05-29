@@ -11,18 +11,55 @@ import RaiseCard from "@/components/raise";
 import house_data from "../../../deployed-addresses/houses.json"
 import propshark_addresses from "../../../deployed-addresses/propshark.json"
 import { TransactionBlock } from "@mysten/sui.js/transactions";
+import { bcs } from "@mysten/sui.js/bcs";
 
-const txb = new TransactionBlock()
-txb.moveCall({
-  target: []
-})
+const get_txb = (address: string) => {
+  const txb = new TransactionBlock()
+  Object.keys(house_data).forEach(house => {
+    txb.moveCall({
+      target: `${propshark_addresses.propshark_package_id}::propshark_contracts::get_fundraise_contribution`,
+      arguments: [txb.object((house_data as any)[house].fundraise_id), txb.pure(address)],
+      typeArguments: [propshark_addresses.types.mock_usdc_type, (house_data as any)[house]["types"]["house_type"]]
+    })
+  })
+  return txb
+}
 
+type OptionU64 = {
+  Some: undefined
+  None: true
+} | {
+  Some: bigint
+  None: undefined
+}
 
 export default function Home() {
   const current_account = useCurrentAccount()
-  const x = useSuiClientQuery("devInspectTransactionBlock", {
-
+  const { data } = useSuiClientQuery("devInspectTransactionBlock", {
+    sender: current_account?.address || "0x0",
+    transactionBlock: get_txb(current_account?.address || "0x0"),
   })
+
+  // CODE IS UGLY
+  const values_map = data ? data.results?.reduce((acc, cur, idx) => {
+    if (!cur.returnValues) return acc
+    let [first_arg, second_arg] = cur.returnValues
+
+    const [bytes, type] = first_arg
+    const result: OptionU64 = bcs.de("Option<u64>", Uint8Array.from(bytes))
+    let xd_result = undefined
+    if (result.Some) {
+      xd_result = Number(result.Some)
+    }
+
+    const [bytes_two] = second_arg
+    const result_u64 = bcs.de("u64", Uint8Array.from(bytes_two))
+
+    acc[Object.keys(house_data)[idx]] = [xd_result, result_u64]
+    return acc
+  }, {} as { [house_name: string]: [number | undefined, number] }) : undefined
+
+  console.log(values_map)
 
   return (
     <main>
@@ -50,20 +87,25 @@ export default function Home() {
           </h3>
           {Object.keys(house_data).map((house_name) => {
             const {cap_rate, raise_target, sqft, type, img, address} = (house_data as any)[house_name].metadata
-            return <RaiseCard address={address} annual_yield={raise_target * cap_rate / 100 * 0.92} cap_rate={cap_rate} raise_target={raise_target} sqft={sqft} type={type} img={img} total_raised={0} user_contribution={0} />
+            let needs_kyc = true
+            let total_raised = 0
+            let user_contribution = 0
+            if (values_map) {
+              const [found_user_contribution, found_total_raised] = values_map[house_name]
+              if (found_user_contribution !== undefined) {
+                needs_kyc = false
+                user_contribution = found_user_contribution
+              }
+              total_raised = found_total_raised
+            }
+
+            return <RaiseCard
+              address={address} annual_yield={raise_target * cap_rate / 100 * 0.92} cap_rate={cap_rate} raise_target={raise_target} sqft={sqft}
+              type={type} img={img} total_raised={0} user_contribution={0} needs_kyc={needs_kyc} house_name={house_name} key={address}
+            />
           })}
         </div>
       </div>
     </main>
   );
 }
-
-        //<div className="ml-auto flex gap-4">
-        //  {current_account && 
-        //    <div className="flex gap-4">
-        //      <USDCBalance address={current_account.address} />
-        //      <p className="leading-[36px] font-bold">{formatAddress(current_account.address)}</p>
-        //    </div>
-        //  }
-        //  <ConnectModal trigger={current_account ? <Button>Disconnect Wallet</Button> : <Button>Connect Wallet</Button>} />
-        //</div>

@@ -125,8 +125,15 @@ module propshark_contracts::propshark_contracts {
         fundraise.collected.join(coin.into_balance());
     }
 
-    public fun get_fundraise_values() {
-
+    public fun get_fundraise_contribution<CoinType, DaoWitness: drop>(fundraise: &mut Fundraise<CoinType, DaoWitness>, contributor: address): (Option<u64>, u64) {
+        return (
+            if (fundraise.collected_map.contains(&contributor)) {
+                option::some(fundraise.collected_map[&contributor])
+            } else {
+                option::none()
+            },
+            fundraise.collected.value()
+        )
     }
 
     fun get_ownership_map_from_fundraise_amounts<CoinType, DaoWitness: drop>(
