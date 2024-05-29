@@ -7,6 +7,7 @@ import { formatAddress } from "@mysten/sui.js/utils";
 import USDCBalance from "@/components/usdc_balance";
 import { Progress } from "@/components/ui/progress";
 import LoginButton from "@/components/connect_button";
+import RaiseCard from "@/components/raise";
 
 
 export default function Home() {
@@ -15,20 +16,20 @@ export default function Home() {
   return (
     <main>
       <div className="flex flex-col justify-center px-4">
-        <div className="flex w-full max-w-7xl py-4 gap-4">
-          <img src="shark.svg" className="h-8 w-8" />
-          <h3 className="leading-[36px] scroll-m-20 text-xl font-semibold tracking-tight">
+        <div className="flex w-full max-w-7xl py-4 gap-2 items-center">
+          <img src="shark.svg" className="h-6 w-6" />
+          <h3 className="leading-[36px] scroll-m-20 text-lg font-semibold tracking-tight text-nowrap">
             PropShark Protocol
           </h3>
           <div className="ml-auto flex gap-4">
             <LoginButton />
           </div>
         </div>
-        <div className="flex gap-8 mt-4 items-center">
+        <div className="relative gap-4 mt-4 items-center">
           <img src="shark_painting.png" className="h-40 w-40 rounded-xl" />
-          <div>
-            <h3 className="scroll-m-20 text-3xl font-bold tracking-tight leading-relaxed">
-              Real Projects:<br /> Real Yield
+          <div className="absolute right-0 bottom-2 bg-[#6593f3a0] text-[#000000] rounded-xl px-4 py-2">
+            <h3 className="scroll-m-20 text-2xl font-bold tracking-normal leading-normal text-nowrap">
+              Real Investments:<br /> Real Returns
             </h3>
           </div>
         </div>
@@ -36,36 +37,8 @@ export default function Home() {
           <h3 className="mt-8 scroll-m-20 text-2xl font-semibold tracking-tight">
             Open Raises
           </h3>
-          <div className="rounded-xl bg-gray-200">
-            <img src="houseone.webp" className="rounded-t-xl object-cover max-h-48 w-full"></img>
-            <Progress value={Math.round((258 / 500) * 100)} className="rounded-none [&>*]:bg-[#6593f3]" />
-            <div className="border border-t-0 border-gray rounded-b-xl pt-2 px-2 pb-4">
-              <p className="font-bold text-lg">$258,000 / $500,000</p>
-              <div className="flex gap-4 mt-2">
-                <div>
-                  <p className="font-bold">$30,350</p>
-                  <p className="leading-tight">Annual Yield</p>
-                </div>
-                <div>
-                  <p className="font-bold">6.07%</p>
-                  <p className="leading-tight">Cap Rate</p>
-                </div>
-                <div>
-                  <p className="font-bold">4,000 sqft</p>
-                  <p className="leading-tight">Multifamily Apartments</p>
-                </div>
-              </div>
-              <p className="mt-2 text-sm">440 Rockville Street, Hephzibah, GA 30815</p>
-              <p className="text-sm mb-4">Managed by Barracuda Properties</p>
-              {current_account?.address ?
-                <div className="flex">
-                  <p className="leading-[36px] font-bold">$0 / 500,000 -&gt; 0%</p>
-                  <Button className="ml-auto">Participate</Button>
-                </div> :
-                <div className="text-center"><LoginButton></LoginButton></div>
-              }
-            </div>
-          </div>
+          <RaiseCard img="housetwo.jpg" address="701 Jeffry Cliff, Port Armandinaland, MO 25172" annual_yield={51680} cap_rate={0.0544} raise_target={950000} sqft={2016} total_raised={731040} user_contribution={0} />
+          <RaiseCard img="houseone.webp" address="440 Rockville Street, Hephzibah, GA 30815" annual_yield={30350} cap_rate={0.0607} raise_target={500000} sqft={4000} total_raised={258000} user_contribution={0} />
         </div>
       </div>
     </main>
