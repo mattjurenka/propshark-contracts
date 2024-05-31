@@ -13,7 +13,7 @@ interface ApproveKycDialogProps {
 export default function ApproveKycDialog({ address, house_name }: ApproveKycDialogProps) {
     return (
     <Dialog>
-      <DialogTrigger>
+      <DialogTrigger asChild>
         <Button>Participate</Button>
       </DialogTrigger>
       <DialogContent className="sm:max-w-[425px]">
@@ -30,7 +30,7 @@ export default function ApproveKycDialog({ address, house_name }: ApproveKycDial
             </Label>
             <Input
               id="name"
-              defaultValue="Pedro Duarte"
+              defaultValue="Bob Jones"
               className="col-span-3"
             />
           </div>
@@ -40,7 +40,17 @@ export default function ApproveKycDialog({ address, house_name }: ApproveKycDial
             </Label>
             <Input
               id="username"
-              defaultValue="@peduarte"
+              defaultValue="United States"
+              className="col-span-3"
+            />
+          </div>
+          <div className="grid grid-cols-4 items-center gap-4">
+            <Label htmlFor="username" className="text-right">
+              Are you an accredited investor?
+            </Label>
+            <Input
+              id="username"
+              defaultValue="Yes"
               className="col-span-3"
             />
           </div>

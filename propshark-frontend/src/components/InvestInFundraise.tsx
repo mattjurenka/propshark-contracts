@@ -15,10 +15,6 @@ interface InvestInFundraiseProps {
 export default function InvestInFundraise({ address, house_name }: InvestInFundraiseProps) {
     const [state, set_state] = useState("")
 
-    const txb = new TransactionBlock()
-    txb.moveCall({
-      target: [""]
-    })
 
     return (
     <Dialog>

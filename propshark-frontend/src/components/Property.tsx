@@ -5,6 +5,8 @@ import LoginButton from "./connect_button";
 import { useCurrentAccount } from "@mysten/dapp-kit";
 import { money_format } from "@/lib/utils";
 import ApproveKycDialog from "./ApproveKycDialog";
+import GovernanceModal from "./GovernanceModal";
+import BuyAndSell from "./BuyAndSell";
 
 export interface RaiseProps {
     raise_target: number,
@@ -20,47 +22,36 @@ export interface RaiseProps {
     house_name: string
 }
 
-export default function RaiseCard({ img, raise_target, total_raised, user_contribution, annual_yield, cap_rate, sqft, address, type, needs_kyc, house_name }: RaiseProps) {
-    const current_account = useCurrentAccount()
+export default function PropertyCard() {
     return <div className="rounded-xl bg-gray-200">
-        <img src={img} className="rounded-t-xl object-cover max-h-48 w-full"></img>
-        <Progress value={50} className="rounded-none [&>*]:bg-[#6593f3]" />
-        <div className="border border-t-0 border-gray rounded-b-xl pt-2 px-2 pb-2">
-            <p className="font-bold text-lg">{money_format.format(total_raised)} / {money_format.format(raise_target)}</p>
+        <img src={"housesix.webp"} className="rounded-t-xl object-cover max-h-48 w-full"></img>
+        <div className="border border-t-0 border-gray rounded-b-xl pt-2 px-2 pb-4">
+            <p className="font-bold text-lg">$25,000 <span className="font-normal text-xs mr-4">Owned</span> $730,000 <span className="font-normal text-xs">Total Value</span></p>
             <div className="flex gap-4 mt-2">
             <div>
-                <p className="font-bold">{money_format.format(annual_yield)}</p>
+                <p className="font-bold">$34,520.24</p>
                 <p className="leading-tight">Annual Yield</p>
             </div>
             <div>
-                <p className="font-bold">{cap_rate.toFixed(2)}%</p>
+                <p className="font-bold">5.14%</p>
                 <p className="leading-tight">Cap Rate</p>
             </div>
             <div>
-                <p className="font-bold">{sqft}</p>
-                <p className="leading-tight">{type}</p>
+                <p className="font-bold">4 Units</p>
+                <p className="leading-tight">Multifamily</p>
             </div>
             </div>
-            <p className="mt-2 text-sm">{address}</p>
+            <p className="mt-2 text-sm">{}</p>
             <p className="text-sm mb-4">Managed by Barracuda Properties</p>
-            {current_account?.address ?
             <div className="text-center">
                 <table className="w-full">
                     <tbody>
                         <tr className="m-0 border-t p-0 even:bg-muted">
                             <td className="text-left font-bold">
-                                Amount Contributed
-                            </td>
-                            <td className="text-right">
-                                {money_format.format(user_contribution)}
-                            </td>
-                        </tr>
-                        <tr className="m-0 border-t p-0 even:bg-muted">
-                            <td className="text-left font-bold">
                                 Ownership Stake
                             </td>
                             <td className="text-right">
-                                {(user_contribution / raise_target * 100).toFixed(2)}%
+                                3.42%
                             </td>
                         </tr>
                         <tr className="m-0 border-t p-0 even:bg-muted">
@@ -68,18 +59,25 @@ export default function RaiseCard({ img, raise_target, total_raised, user_contri
                                 Expected Annual Yield
                             </td>
                             <td className="text-right">
-                                {money_format.format(annual_yield)}
+                                $1,180
+                            </td>
+                        </tr>
+                        <tr className="m-0 border-t p-0 even:bg-muted">
+                            <td className="text-left font-bold">
+                                Unclaimed Rents
+                            </td>
+                            <td className="text-right">
+                                $2,360
                             </td>
                         </tr>
                     </tbody>
                 </table>
-                <div className="flex gap-4 mt-4">
-                    {needs_kyc ? <ApproveKycDialog address={current_account.address || ""} house_name={house_name} /> : <Button>Invest</Button>}
-                    <Button variant={"outline"} onClick={() => window.open("/propsharkincorporation.pdf", "_blank")}>View Documents</Button>
+                <div className="flex flex-wrap justify-between gap-2 mt-2">
+                    <Button>Claim Rent</Button>
+                    <BuyAndSell />
+                    <GovernanceModal />
                 </div>
-            </div> :
-            <div className="text-center"><LoginButton></LoginButton></div>
-            }
+            </div>
         </div>
     </div>
 }

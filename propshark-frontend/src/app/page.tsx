@@ -12,6 +12,8 @@ import house_data from "../../../deployed-addresses/houses.json"
 import propshark_addresses from "../../../deployed-addresses/propshark.json"
 import { TransactionBlock } from "@mysten/sui.js/transactions";
 import { bcs } from "@mysten/sui.js/bcs";
+import Dashboard from "@/components/Dashboard";
+import PropertyCard from "@/components/Property";
 
 const get_txb = (address: string) => {
   const txb = new TransactionBlock()
@@ -63,7 +65,7 @@ export default function Home() {
 
   return (
     <main>
-      <div className="flex flex-col justify-center px-4">
+      <div className="flex flex-col justify-center px-4 pb-8">
         <div className="flex w-full max-w-7xl py-4 gap-2 items-center">
           <img src="shark.svg" className="h-6 w-6" />
           <h3 className="leading-[36px] scroll-m-20 text-lg font-semibold tracking-tight text-nowrap">
@@ -81,6 +83,7 @@ export default function Home() {
             </h3>
           </div>
         </div>
+        <Dashboard />
         <div className="flex flex-col gap-4">
           <h3 className="mt-8 scroll-m-20 text-2xl font-semibold tracking-tight">
             Open Raises
@@ -98,13 +101,23 @@ export default function Home() {
               }
               total_raised = found_total_raised
             }
+            
+            if (house_name == "house_one") {
+              total_raised = 83000
+              user_contribution = 37000
+              needs_kyc = false
+            }
 
             return <RaiseCard
               address={address} annual_yield={raise_target * cap_rate / 100 * 0.92} cap_rate={cap_rate} raise_target={raise_target} sqft={sqft}
-              type={type} img={img} total_raised={0} user_contribution={0} needs_kyc={needs_kyc} house_name={house_name} key={address}
+              type={type} img={img} total_raised={total_raised} user_contribution={user_contribution} needs_kyc={needs_kyc} house_name={house_name} key={address}
             />
           })}
         </div>
+        <h3 className="mt-8 mb-4 scroll-m-20 text-2xl font-semibold tracking-tight">
+          Owned Properties
+        </h3>
+        <PropertyCard />
       </div>
     </main>
   );
